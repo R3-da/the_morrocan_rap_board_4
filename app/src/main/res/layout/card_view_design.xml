@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
         <FrameLayout
-            android:layout_width="70dp"
+            android:layout_width="65dp"
             android:layout_height="match_parent"
             >
 

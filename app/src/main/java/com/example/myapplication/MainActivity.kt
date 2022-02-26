@@ -1,11 +1,16 @@
 package com.example.myapplication
 
 import android.animation.AnimatorInflater
+import android.nfc.Tag
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.animation.doOnEnd
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,12 +40,20 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun setFromXML (view: View) {
 
+    fun setFromXML(view: View) {
         val animator = AnimatorInflater.loadAnimator(this, R.animator.set)
+
+        view.setOnClickListener(null)
+
         animator.apply {
             setTarget(view)
             start()
+        }
+
+        view.setOnClickListener{
+            animator.end()
+            setFromXML(view)
         }
     }
 }
