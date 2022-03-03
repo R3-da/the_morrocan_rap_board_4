@@ -1,6 +1,8 @@
 package com.example.myapplication
 
 import android.animation.AnimatorInflater
+import android.content.Context
+import android.media.MediaPlayer
 import android.nfc.Tag
 import android.os.Build
 import android.os.Bundle
@@ -10,9 +12,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.animation.doOnEnd
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import java.lang.reflect.Field
 
 
 class MainActivity : AppCompatActivity() {
+
+    private var mediaPlayer: MediaPlayer? = null
+    private val rappersNames = listOf("figoshin", "dizzydros","donbigg")
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -24,16 +32,10 @@ class MainActivity : AppCompatActivity() {
         recyclerview.layoutManager = LinearLayoutManager(this)
 
         // ArrayList of class ItemsViewModel
-        val data = ArrayList<ItemsViewModel>()
-
-        // This loop will create 20 Views containing
-        // the image with the count of view
-        for (i in 1..20) {
-            data.add(ItemsViewModel(R.drawable.bg, "Figoshin\n" + i))
-        }
+        val data = fetchData(this ,rappersNames)
 
         // This will pass the ArrayList to our Adapter
-        val adapter = CustomAdapter(data)
+        val adapter = CustomAdapter(this,data,mediaPlayer)
 
         // Setting the Adapter with the recyclerview
         recyclerview.adapter = adapter
@@ -55,5 +57,28 @@ class MainActivity : AppCompatActivity() {
             animator.end()
             setFromXML(view)
         }
+    }
+
+    private fun fetchData(context: Context, rapperNames : List<String>) : ArrayList<RapperData> {
+
+        val drawableFields: Array<Field> = R.drawable::class.java.fields
+        val drawableLists = drawableFields.map { it.name }.toTypedArray()
+        val rawFields: Array<Field> = R.raw::class.java.fields
+        val rawLists = rawFields.map { it.name }.toTypedArray()
+        var rapperBg : Int
+        var rapperIc : Int
+        var rapperAdlibs : MutableList<String>
+
+        val rappersData = ArrayList<RapperData>()
+
+        for (rapperName in rappersNames) {
+            rapperBg = context.resources.getIdentifier(drawableLists.filter { s -> s.startsWith(rapperName+"_bg") }[0],"drawable", context.packageName)
+            rapperIc = context.resources.getIdentifier(drawableLists.filter { s -> s.startsWith(rapperName+"_ic") }[0],"drawable", context.packageName)
+            rapperAdlibs = rawLists.filter { s -> s.startsWith(rapperName)}.toMutableList()
+
+            rappersData.add(RapperData(rapperName,rapperBg,rapperIc,rapperAdlibs))
+        }
+
+        return rappersData
     }
 }

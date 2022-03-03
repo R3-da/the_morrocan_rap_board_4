@@ -27,7 +27,7 @@
                 android:layout_height="200dp"
                 android:layout_gravity="center_vertical"
                 android:scaleType="centerCrop"
-                android:src="@drawable/bg" />
+                android:src="@drawable/donbigg_bg" />
 
             <ImageView
                 android:layout_width="200dp"
@@ -59,53 +59,6 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/icon1"
-                android:layout_width="20dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/icon"
-                android:onClick="setFromXML"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:background="@null"
-                android:alpha="0.7"/>
-
-            <ImageButton
-                android:id="@+id/icon2"
-                android:layout_width="20dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/icon"
-                android:onClick="setFromXML"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:background="@null"
-                android:alpha="0.7"/>
-
-            <ImageButton
-                android:id="@+id/icon3"
-                android:layout_width="20dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/icon"
-                android:onClick="setFromXML"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:background="@null"
-                android:alpha="0.7"/>
-
-            <ImageButton
-                android:id="@+id/icon4"
-                android:layout_width="20dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/icon"
-                android:onClick="setFromXML"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:background="@null"
-                android:alpha="0.7"/>
         </LinearLayout>
 
     </LinearLayout>
