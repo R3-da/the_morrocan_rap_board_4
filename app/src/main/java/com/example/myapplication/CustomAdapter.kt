@@ -1,14 +1,14 @@
 package com.example.myapplication
 
+import android.animation.AnimatorInflater
 import android.content.Context
 import android.media.MediaPlayer
-import android.util.Log
-import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import android.widget.RelativeLayout
+import android.widget.LinearLayout
+import androidx.core.view.marginBottom
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
@@ -35,14 +35,32 @@ class CustomAdapter(private val context: Context, private val mList: ArrayList<R
 
         // sets the text to the textview from our itemHolder class
         holder.textView.text = ItemsViewModel.name
-        Log.d("test", ItemsViewModel.toString())
+
         for(adlib in ItemsViewModel.adlibs) {
-//            val themeContext: ContextThemeWrapper = ContextThemeWrapper(context, R.style.buttonStyle)
-            val lp = RelativeLayout.LayoutParams(holder.newStyle, null)
-            var button : ImageButton = ImageButton(context)
+            val button = ImageButton(context)
+
+            button.layoutParams = LinearLayout.LayoutParams(
+                    context.resources.getDimension(R.dimen.rappers_icon_width).toInt(),
+                    LinearLayout.LayoutParams.MATCH_PARENT, //change the parameters as whatever you want
+                    1.0f
+            )
             button.setImageResource(ItemsViewModel.ic)
-            button.layoutParams = lp
-            Log.d("test", "1")
+            button.setOnClickListener {
+                setFromXML(button)
+                if(mediaPlayer != null) {
+                    mediaPlayer?.release()
+                }
+                var resId : Int = context.resources.getIdentifier(adlib,"raw", context.packageName);
+                mediaPlayer = MediaPlayer.create(context, resId)
+                mediaPlayer?.start()
+            }
+            button.scaleType = ImageView.ScaleType.FIT_CENTER
+            button.adjustViewBounds = true
+            button.background = null
+            button.alpha = 0.7f
+            button.setPadding(0,0,0,0)
+            button.setBackgroundResource(0)
+
             holder.rappersView.addView(button)
         }
 
@@ -58,7 +76,22 @@ class CustomAdapter(private val context: Context, private val mList: ArrayList<R
         val imageView: ImageView = itemView.findViewById(R.id.imageview)
         val textView: TextView = itemView.findViewById(R.id.textView)
         val rappersView : LinearLayout = itemView.findViewById(R.id.rappersFaces)
-        val newStyle = ContextThemeWrapper(itemView.context, R.style.buttonStyle)
-        val someTextView = ImageButton(ContextThemeWrapper(itemView.context, R.style.buttonStyle))
+
+    }
+
+    fun setFromXML(view: View) {
+        val animator = AnimatorInflater.loadAnimator(context, R.animator.set)
+
+        view.setOnClickListener(null)
+
+        animator.apply {
+            setTarget(view)
+            start()
+        }
+
+        view.setOnClickListener{
+            animator.end()
+            setFromXML(view)
+        }
     }
 }
