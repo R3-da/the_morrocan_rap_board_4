@@ -46,13 +46,7 @@ class CustomAdapter(private val context: Context, private val mList: ArrayList<R
             )
             button.setImageResource(ItemsViewModel.ic)
             button.setOnClickListener {
-                setFromXML(button)
-                if(mediaPlayer != null) {
-                    mediaPlayer?.release()
-                }
-                var resId : Int = context.resources.getIdentifier(adlib,"raw", context.packageName);
-                mediaPlayer = MediaPlayer.create(context, resId)
-                mediaPlayer?.start()
+                setFromXML(button,adlib)
             }
             button.scaleType = ImageView.ScaleType.FIT_CENTER
             button.adjustViewBounds = true
@@ -79,7 +73,7 @@ class CustomAdapter(private val context: Context, private val mList: ArrayList<R
 
     }
 
-    fun setFromXML(view: View) {
+    fun setFromXML(view: View, adlib: String) {
         val animator = AnimatorInflater.loadAnimator(context, R.animator.set)
 
         view.setOnClickListener(null)
@@ -89,9 +83,16 @@ class CustomAdapter(private val context: Context, private val mList: ArrayList<R
             start()
         }
 
+        if(mediaPlayer != null) {
+            mediaPlayer?.release()
+        }
+        var resId : Int = context.resources.getIdentifier(adlib,"raw", context.packageName);
+        mediaPlayer = MediaPlayer.create(context, resId)
+        mediaPlayer?.start()
+
         view.setOnClickListener{
             animator.end()
-            setFromXML(view)
+            setFromXML(view,adlib)
         }
     }
 }
