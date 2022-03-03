@@ -6,21 +6,21 @@
                     android:propertyName="scaleX"
                     android:duration="400"
                     android:valueFrom="1"
-                    android:valueTo="1.2"
+                    android:valueTo="1.1"
                     android:valueType="floatType"
                     android:interpolator="@android:anim/overshoot_interpolator"/>
                 <objectAnimator
                     android:propertyName="scaleY"
                     android:duration="400"
                     android:valueFrom="1"
-                    android:valueTo="1.2"
+                    android:valueTo="1.1"
                     android:valueType="floatType"
                     android:interpolator="@android:anim/overshoot_interpolator"/>
                 <objectAnimator
                     android:propertyName="scaleX"
                     android:startOffset="600"
                     android:duration="200"
-                    android:valueFrom="1.2"
+                    android:valueFrom="1.1"
                     android:valueTo="1"
                     android:valueType="floatType"
                     android:interpolator="@android:anim/accelerate_interpolator"/>
@@ -28,7 +28,7 @@
                     android:propertyName="scaleY"
                     android:startOffset="600"
                     android:duration="200"
-                    android:valueFrom="1.2"
+                    android:valueFrom="1.1"
                     android:valueTo="1"
                     android:valueType="floatType"
                     android:interpolator="@android:anim/accelerate_interpolator"/>

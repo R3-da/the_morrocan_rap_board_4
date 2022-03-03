@@ -31,32 +31,17 @@ class MainActivity : AppCompatActivity() {
         // this creates a vertical layout Manager
         recyclerview.layoutManager = LinearLayoutManager(this)
 
+        val animator = AnimatorInflater.loadAnimator(this, R.animator.set)
+
         // ArrayList of class ItemsViewModel
         val data = fetchData(this ,rappersNames)
 
         // This will pass the ArrayList to our Adapter
-        val adapter = CustomAdapter(this,data,mediaPlayer)
+        val adapter = CustomAdapter(this,animator,data,mediaPlayer)
 
         // Setting the Adapter with the recyclerview
         recyclerview.adapter = adapter
 
-    }
-
-
-    fun setFromXML(view: View) {
-        val animator = AnimatorInflater.loadAnimator(this, R.animator.set)
-
-        view.setOnClickListener(null)
-
-        animator.apply {
-            setTarget(view)
-            start()
-        }
-
-        view.setOnClickListener{
-            animator.end()
-            setFromXML(view)
-        }
     }
 
     private fun fetchData(context: Context, rappersNames : List<String>) : ArrayList<RapperData> {

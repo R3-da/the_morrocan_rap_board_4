@@ -1,8 +1,10 @@
 package com.example.myapplication
 
+import android.animation.Animator
 import android.animation.AnimatorInflater
 import android.content.Context
 import android.media.MediaPlayer
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
 
-class CustomAdapter(private val context: Context, private val mList: ArrayList<RapperData>, private var mediaPlayer: MediaPlayer?) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class CustomAdapter(private val context: Context, private val animator: Animator,private val mList: ArrayList<RapperData>, private var mediaPlayer: MediaPlayer?) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -74,11 +76,12 @@ class CustomAdapter(private val context: Context, private val mList: ArrayList<R
     }
 
     fun setFromXML(view: View, adlib: String) {
-        val animator = AnimatorInflater.loadAnimator(context, R.animator.set)
+//        val animator = AnimatorInflater.loadAnimator(context, R.animator.set)
 
         view.setOnClickListener(null)
 
         animator.apply {
+            end()
             setTarget(view)
             start()
         }
@@ -90,8 +93,11 @@ class CustomAdapter(private val context: Context, private val mList: ArrayList<R
         mediaPlayer = MediaPlayer.create(context, resId)
         mediaPlayer?.start()
 
+        mediaPlayer?.setOnCompletionListener {
+            Log.d("check audio", "audio finished")
+        }
+
         view.setOnClickListener{
-            animator.end()
             setFromXML(view,adlib)
         }
     }
