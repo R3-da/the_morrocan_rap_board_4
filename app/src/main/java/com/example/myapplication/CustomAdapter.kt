@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
 
-class CustomAdapter(private val context: Context, private val animator: Animator,private val mList: ArrayList<RapperData>, private var mediaPlayer: MediaPlayer?) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class CustomAdapter(private val context: Context, private var animator1: Animator,private var animator2: Animator,private val mList: ArrayList<RapperData>, private var mediaPlayer: MediaPlayer?) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -48,7 +48,7 @@ class CustomAdapter(private val context: Context, private val animator: Animator
             )
             button.setImageResource(ItemsViewModel.ic)
             button.setOnClickListener {
-                setFromXML(button,adlib)
+                setFromXML(button,adlib,animator1,animator2)
             }
             button.scaleType = ImageView.ScaleType.FIT_CENTER
             button.adjustViewBounds = true
@@ -75,30 +75,35 @@ class CustomAdapter(private val context: Context, private val animator: Animator
 
     }
 
-    fun setFromXML(view: View, adlib: String) {
-//        val animator = AnimatorInflater.loadAnimator(context, R.animator.set)
-
+    fun setFromXML(view: View, adlib: String,animator1: Animator,animator2: Animator) {
         view.setOnClickListener(null)
-
-        animator.apply {
-            end()
-            setTarget(view)
-            start()
-        }
-
+        animator2.end()
+        animator1.end()
         if(mediaPlayer != null) {
             mediaPlayer?.release()
         }
         var resId : Int = context.resources.getIdentifier(adlib,"raw", context.packageName);
         mediaPlayer = MediaPlayer.create(context, resId)
         mediaPlayer?.start()
+        animator1.apply {
+            end()
+            setTarget(view)
+            start()
+        }
+
 
         mediaPlayer?.setOnCompletionListener {
             Log.d("check audio", "audio finished")
+            animator1.end()
+            animator2.apply {
+                end()
+                setTarget(view)
+                start()
+            }
         }
 
         view.setOnClickListener{
-            setFromXML(view,adlib)
+            setFromXML(view,adlib,animator1,animator2)
         }
     }
 }

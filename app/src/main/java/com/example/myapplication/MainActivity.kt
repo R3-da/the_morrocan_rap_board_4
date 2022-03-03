@@ -31,13 +31,14 @@ class MainActivity : AppCompatActivity() {
         // this creates a vertical layout Manager
         recyclerview.layoutManager = LinearLayoutManager(this)
 
-        val animator = AnimatorInflater.loadAnimator(this, R.animator.set)
+        var animator1 = AnimatorInflater.loadAnimator(this, R.animator.set1)
+        var animator2 = AnimatorInflater.loadAnimator(this, R.animator.set2)
 
         // ArrayList of class ItemsViewModel
         val data = fetchData(this ,rappersNames)
 
         // This will pass the ArrayList to our Adapter
-        val adapter = CustomAdapter(this,animator,data,mediaPlayer)
+        val adapter = CustomAdapter(this,animator1,animator2,data,mediaPlayer)
 
         // Setting the Adapter with the recyclerview
         recyclerview.adapter = adapter

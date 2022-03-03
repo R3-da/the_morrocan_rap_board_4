@@ -17,32 +17,10 @@
                     android:valueType="floatType"
                     android:interpolator="@android:anim/overshoot_interpolator"/>
                 <objectAnimator
-                    android:propertyName="scaleX"
-                    android:startOffset="600"
-                    android:duration="200"
-                    android:valueFrom="1.1"
-                    android:valueTo="1"
-                    android:valueType="floatType"
-                    android:interpolator="@android:anim/accelerate_interpolator"/>
-                <objectAnimator
-                    android:propertyName="scaleY"
-                    android:startOffset="600"
-                    android:duration="200"
-                    android:valueFrom="1.1"
-                    android:valueTo="1"
-                    android:valueType="floatType"
-                    android:interpolator="@android:anim/accelerate_interpolator"/>
-                <objectAnimator
                     android:propertyName="Alpha"
                     android:duration="50"
                     android:valueFrom="0.7"
                     android:valueTo="1"
                     android:valueType="floatType"/>
-                <objectAnimator
-                    android:propertyName="Alpha"
-                    android:startOffset="600"
-                    android:duration="200"
-                    android:valueFrom="1"
-                    android:valueTo="0.7"
-                    android:valueType="floatType"/>
+
 </set>
