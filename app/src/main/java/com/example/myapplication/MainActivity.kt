@@ -18,7 +18,7 @@ import java.lang.reflect.Field
 class MainActivity : AppCompatActivity() {
 
     private var mediaPlayer: MediaPlayer? = null
-    private val rappersNames = listOf("figoshin", "dizzydros","donbigg")
+    private val rappersNames = listOf("Figoshin", "Dizzy Dros","Don Bigg", "Tagne", "Khtek", "7liwa", "ElgrandeToto")
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun fetchData(context: Context, rapperNames : List<String>) : ArrayList<RapperData> {
+    private fun fetchData(context: Context, rappersNames : List<String>) : ArrayList<RapperData> {
 
         val drawableFields: Array<Field> = R.drawable::class.java.fields
         val drawableLists = drawableFields.map { it.name }.toTypedArray()
@@ -69,12 +69,17 @@ class MainActivity : AppCompatActivity() {
         var rapperIc : Int
         var rapperAdlibs : MutableList<String>
 
+
         val rappersData = ArrayList<RapperData>()
 
+        var rapperNameFiltered: String
         for (rapperName in rappersNames) {
-            rapperBg = context.resources.getIdentifier(drawableLists.filter { s -> s.startsWith(rapperName+"_bg") }[0],"drawable", context.packageName)
-            rapperIc = context.resources.getIdentifier(drawableLists.filter { s -> s.startsWith(rapperName+"_ic") }[0],"drawable", context.packageName)
-            rapperAdlibs = rawLists.filter { s -> s.startsWith(rapperName)}.toMutableList()
+            //remove white space from rapperName
+            rapperNameFiltered = rapperName.filterNot { it.isWhitespace() }.toLowerCase()
+
+            rapperBg = context.resources.getIdentifier(drawableLists.filter { s -> s.endsWith("bg_"+rapperNameFiltered) }[0],"drawable", context.packageName)
+            rapperIc = context.resources.getIdentifier(drawableLists.filter { s -> s.endsWith("ic_"+rapperNameFiltered) }[0],"drawable", context.packageName)
+            rapperAdlibs = rawLists.filter { s -> s.endsWith(rapperNameFiltered)}.toMutableList()
 
             rappersData.add(RapperData(rapperName,rapperBg,rapperIc,rapperAdlibs))
         }
