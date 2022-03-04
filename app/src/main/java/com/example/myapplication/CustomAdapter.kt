@@ -14,6 +14,7 @@ import android.view.animation.AccelerateInterpolator
 import android.view.animation.OvershootInterpolator
 import android.widget.*
 import android.widget.LinearLayout
+import androidx.core.graphics.drawable.toDrawable
 import androidx.core.view.marginBottom
 import androidx.recyclerview.widget.RecyclerView
 import java.time.Duration
@@ -52,6 +53,7 @@ class CustomAdapter(private val context: Context,private var pop : AnimatorSet,p
                     1.0f
             )
             button.setImageResource(ItemsViewModel.ic)
+            button.background = R.drawable.ic_rappers_border.toDrawable()
             button.setOnClickListener {
                 pop = setFromXML(button,adlib)
             }
@@ -98,7 +100,7 @@ class CustomAdapter(private val context: Context,private var pop : AnimatorSet,p
         return pop
     }
 
-    fun popAnim(pause_duration: Long, view:View, pop: AnimatorSet) : AnimatorSet{
+    private fun popAnim(pause_duration: Long, view:View, pop: AnimatorSet) : AnimatorSet{
         pop.end()
         val popOutX = setAnim(view,"scaleX", 1f,1.1f, 400)
         popOutX.interpolator = OvershootInterpolator()
@@ -126,7 +128,7 @@ class CustomAdapter(private val context: Context,private var pop : AnimatorSet,p
         return pop
     }
 
-    fun setAnim(view: View, propName:String, valueFrom:Float, valueTo:Float,duration:Long) : ObjectAnimator {
+    private fun setAnim(view: View, propName:String, valueFrom:Float, valueTo:Float,duration:Long) : ObjectAnimator {
         val animator = ObjectAnimator.ofFloat(view, propName, valueFrom, valueTo)
         animator.duration = duration
         return animator
