@@ -2,20 +2,25 @@ package com.example.myapplication
 
 import android.animation.Animator
 import android.animation.AnimatorInflater
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.media.MediaPlayer
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AccelerateInterpolator
+import android.view.animation.OvershootInterpolator
 import android.widget.*
 import android.widget.LinearLayout
 import androidx.core.view.marginBottom
 import androidx.recyclerview.widget.RecyclerView
+import java.time.Duration
 import java.util.*
 
 
-class CustomAdapter(private val context: Context, private var animator1: Animator,private var animator2: Animator,private val mList: ArrayList<RapperData>, private var mediaPlayer: MediaPlayer?) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class CustomAdapter(private val context: Context,private var pop : AnimatorSet,private val mList: ArrayList<RapperData>, private var mediaPlayer: MediaPlayer?) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -48,7 +53,7 @@ class CustomAdapter(private val context: Context, private var animator1: Animato
             )
             button.setImageResource(ItemsViewModel.ic)
             button.setOnClickListener {
-                setFromXML(button,adlib,animator1,animator2)
+                pop = setFromXML(button,adlib)
             }
             button.scaleType = ImageView.ScaleType.FIT_CENTER
             button.adjustViewBounds = true
@@ -75,35 +80,55 @@ class CustomAdapter(private val context: Context, private var animator1: Animato
 
     }
 
-    fun setFromXML(view: View, adlib: String,animator1: Animator,animator2: Animator) {
+    fun setFromXML(view: View, adlib: String) : AnimatorSet{
         view.setOnClickListener(null)
-        animator2.end()
-        animator1.end()
+
         if(mediaPlayer != null) {
             mediaPlayer?.release()
         }
         var resId : Int = context.resources.getIdentifier(adlib,"raw", context.packageName);
         mediaPlayer = MediaPlayer.create(context, resId)
         mediaPlayer?.start()
-        animator1.apply {
-            end()
-            setTarget(view)
-            start()
-        }
-
-
-        mediaPlayer?.setOnCompletionListener {
-            Log.d("check audio", "audio finished")
-            animator1.end()
-            animator2.apply {
-                end()
-                setTarget(view)
-                start()
-            }
-        }
+        var animDuration = mediaPlayer?.duration!!.toLong()
+        pop = popAnim(animDuration, view, pop)
 
         view.setOnClickListener{
-            setFromXML(view,adlib,animator1,animator2)
+            setFromXML(view,adlib)
         }
+        return pop
+    }
+
+    fun popAnim(pause_duration: Long, view:View, pop: AnimatorSet) : AnimatorSet{
+        pop.end()
+        val popOutX = setAnim(view,"scaleX", 1f,1.1f, 400)
+        popOutX.interpolator = OvershootInterpolator()
+        val popOutY = setAnim(view,"scaleY", 1f,1.1f, 400)
+        popOutY.interpolator = OvershootInterpolator()
+        val popOutAlpha = setAnim(view,"Alpha", 0.7f,1f, 50)
+
+        val popOffX = setAnim(view,"scaleX", 1.1f,1f, 200)
+        popOffX.interpolator = AccelerateInterpolator()
+        val popOffY = setAnim(view,"scaleY", 1.1f,1f, 200)
+        popOffY.interpolator = AccelerateInterpolator()
+        val popOffAlpha = setAnim(view,"Alpha", 1f,0.7f, 250)
+
+        val pop = AnimatorSet()
+        pop.play(popOutX).with(popOutY).with(popOutAlpha).after(100.toLong())
+//        pop.play(popOutX).after(100.toLong())
+
+
+        pop.play(popOffX).with(popOffY).with(popOffAlpha).after(pause_duration)
+        pop.play(popOffX).after(pause_duration)
+
+        pop.play(popOutX).before(popOffX)
+        pop.start()
+
+        return pop
+    }
+
+    fun setAnim(view: View, propName:String, valueFrom:Float, valueTo:Float,duration:Long) : ObjectAnimator {
+        val animator = ObjectAnimator.ofFloat(view, propName, valueFrom, valueTo)
+        animator.duration = duration
+        return animator
     }
 }

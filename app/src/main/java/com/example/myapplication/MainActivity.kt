@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import android.animation.AnimatorInflater
+import android.animation.AnimatorSet
 import android.content.Context
 import android.media.MediaPlayer
 import android.nfc.Tag
@@ -31,14 +32,13 @@ class MainActivity : AppCompatActivity() {
         // this creates a vertical layout Manager
         recyclerview.layoutManager = LinearLayoutManager(this)
 
-        var animator1 = AnimatorInflater.loadAnimator(this, R.animator.set1)
-        var animator2 = AnimatorInflater.loadAnimator(this, R.animator.set2)
+        var pop = AnimatorSet()
 
         // ArrayList of class ItemsViewModel
         val data = fetchData(this ,rappersNames)
 
         // This will pass the ArrayList to our Adapter
-        val adapter = CustomAdapter(this,animator1,animator2,data,mediaPlayer)
+        val adapter = CustomAdapter(this,pop,data,mediaPlayer)
 
         // Setting the Adapter with the recyclerview
         recyclerview.adapter = adapter
