@@ -53,7 +53,6 @@ class CustomAdapter(private val context: Context,private var pop : AnimatorSet,p
                     1.0f
             )
             button.setImageResource(ItemsViewModel.ic)
-            button.background = R.drawable.ic_rappers_border.toDrawable()
             button.setOnClickListener {
                 pop = setFromXML(button,adlib)
             }
@@ -65,6 +64,8 @@ class CustomAdapter(private val context: Context,private var pop : AnimatorSet,p
             button.setBackgroundResource(0)
 
             holder.rappersView.addView(button)
+
+//            setAllParentsClip(button, false)
         }
 
     }
@@ -102,6 +103,7 @@ class CustomAdapter(private val context: Context,private var pop : AnimatorSet,p
 
     private fun popAnim(pause_duration: Long, view:View, pop: AnimatorSet) : AnimatorSet{
         pop.end()
+        val popOutZ = ObjectAnimator.ofFloat(view, "translationZ", 1f)
         val popOutX = setAnim(view,"scaleX", 1f,1.1f, 400)
         popOutX.interpolator = OvershootInterpolator()
         val popOutY = setAnim(view,"scaleY", 1f,1.1f, 400)
@@ -113,14 +115,15 @@ class CustomAdapter(private val context: Context,private var pop : AnimatorSet,p
         val popOffY = setAnim(view,"scaleY", 1.1f,1f, 200)
         popOffY.interpolator = AccelerateInterpolator()
         val popOffAlpha = setAnim(view,"Alpha", 1f,0.7f, 250)
+        val popOffZ = ObjectAnimator.ofFloat(view, "translationZ", 0f)
 
         val pop = AnimatorSet()
-        pop.play(popOutX).with(popOutY).with(popOutAlpha).after(100.toLong())
-//        pop.play(popOutX).after(100.toLong())
+        pop.play(popOutX).with(popOutY).with(popOutAlpha)
+        pop.play(popOutZ).before(popOffX)
 
 
         pop.play(popOffX).with(popOffY).with(popOffAlpha).after(pause_duration)
-        pop.play(popOffX).after(pause_duration)
+        pop.play(popOffZ).after(popOffX)
 
         pop.play(popOutX).before(popOffX)
         pop.start()
@@ -132,5 +135,16 @@ class CustomAdapter(private val context: Context,private var pop : AnimatorSet,p
         val animator = ObjectAnimator.ofFloat(view, propName, valueFrom, valueTo)
         animator.duration = duration
         return animator
+    }
+
+    private fun setAllParentsClip(view: View, enabled: Boolean) {
+        var view = view
+        while (view.parent != null && view.parent is ViewGroup) {
+            val viewGroup = view.parent as ViewGroup
+            viewGroup.clipChildren = enabled
+            viewGroup.clipToPadding = enabled
+            view = viewGroup
+            Log.d("tag", "1")
+        }
     }
 }
