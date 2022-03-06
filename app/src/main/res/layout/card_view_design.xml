@@ -8,16 +8,14 @@
     android:layout_margin="10dp"
     app:cardElevation="6dp"
     app:cardCornerRadius="10dp"
-    app:cardBackgroundColor="@color/orange_cold"
-    android:outlineProvider="none"
-    android:clipChildren="false">
+    app:cardBackgroundColor="@color/orange_cold">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:outlineProvider="none"
-        android:clipChildren="false">
+        android:clipChildren="false"
+        android:clipToOutline="false">
         <FrameLayout
             android:layout_width="65dp"
             android:layout_height="match_parent"
@@ -59,8 +57,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:outlineProvider="none"
-            android:clipChildren="false">
+            android:clipChildren="false"
+            android:clipToOutline="false">
         </LinearLayout>
 
     </LinearLayout>

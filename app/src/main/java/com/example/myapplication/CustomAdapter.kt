@@ -61,6 +61,9 @@ class CustomAdapter(private val context: Context,private var pop : AnimatorSet,p
             button.background = null
             button.alpha = 0.7f
             button.setPadding(0,0,0,0)
+            val param = button.layoutParams as ViewGroup.MarginLayoutParams
+            param.setMargins(10,10,10,10)
+            button.layoutParams = param
             button.setBackgroundResource(0)
 
             holder.rappersView.addView(button)

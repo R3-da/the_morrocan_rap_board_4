@@ -8,17 +8,14 @@
     android:orientation="vertical"
     tools:context=".MainActivity"
     android:background="@color/orange_cold"
-    android:outlineProvider="none"
-    android:clipChildren="false">
+>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:itemCount="5"
-        tools:listitem="@layout/card_view_design"
-        android:outlineProvider="none"
-        android:clipChildren="false"/>
+        tools:listitem="@layout/card_view_design" />
 
 
 </LinearLayout>
