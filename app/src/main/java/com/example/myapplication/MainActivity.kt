@@ -14,6 +14,9 @@ import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.reddit.indicatorfastscroll.FastScrollItemIndicator
+import com.reddit.indicatorfastscroll.FastScrollerThumbView
+import com.reddit.indicatorfastscroll.FastScrollerView
 import java.lang.reflect.Field
 
 
@@ -31,6 +34,12 @@ class MainActivity : AppCompatActivity() {
         // getting the recyclerview by its id
         val recyclerview = findViewById<RecyclerView>(R.id.recyclerview)
 
+        //get fast scroller
+        val fastScrollerView = findViewById<FastScrollerView>(R.id.fastscroller)
+
+        //get fast scroller thumb
+        val fastScrollerThumbView = findViewById<FastScrollerThumbView>(R.id.fastscroller_thumb)
+
         // this creates a vertical layout Manager
         recyclerview.layoutManager = LinearLayoutManager(this)
 
@@ -44,6 +53,20 @@ class MainActivity : AppCompatActivity() {
 
         // Setting the Adapter with the recyclerview
         recyclerview.adapter = adapter
+
+        //setting the fast scroller
+        fastScrollerView.setupWithRecyclerView(
+                recyclerview,
+                { position ->
+                    val item = data[position] // Get your model object
+                    // or fetch the section at [position] from your database
+                    FastScrollItemIndicator.Text(
+                            item.name.substring(0, 1).toUpperCase() // Grab the first letter and capitalize it
+                    ) // Return a text indicator
+                }
+        )
+
+        fastScrollerThumbView.setupWithFastScroller(fastScrollerView)
 
     }
 

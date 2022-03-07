@@ -5,17 +5,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     tools:context=".MainActivity"
     android:background="@color/orange_cold"
 >
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview"
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:itemCount="5"
-        tools:listitem="@layout/card_view_design" />
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:itemCount="5"
+            tools:listitem="@layout/card_view_design" />
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right">
+            <com.reddit.indicatorfastscroll.FastScrollerView
+                android:id="@+id/fastscroller"
+                android:layout_width="36dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="0dp"
+                />
+            <com.reddit.indicatorfastscroll.FastScrollerThumbView
+                android:id="@+id/fastscroller_thumb"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_alignBottom="@+id/fastscroller"
+                android:layout_alignTop="@+id/fastscroller"
+                android:layout_marginEnd="16dp"
+                android:layout_toStartOf="@+id/fastscroller"
+                android:translationX="-25dp"
+                />
+
+        </FrameLayout>
+
+    </FrameLayout>
+
+
+
+
+
+
 
 
 </LinearLayout>

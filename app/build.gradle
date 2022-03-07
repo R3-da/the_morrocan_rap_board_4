@@ -32,6 +32,7 @@ android {
     }
 }
 
+
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -50,4 +51,7 @@ dependencies {
 
     // for the new splash screen API
     implementation 'androidx.core:core-splashscreen:1.0.0-alpha02'
+
+    //indicator fast scroller
+    implementation 'com.reddit:indicator-fast-scroll:1.0.1'
 }
