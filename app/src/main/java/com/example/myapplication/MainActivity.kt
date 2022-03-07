@@ -20,7 +20,7 @@ import java.lang.reflect.Field
 class MainActivity : AppCompatActivity() {
 
     private var mediaPlayer: MediaPlayer? = null
-    private val rappersNames = listOf("Figoshin", "Dizzy Dros","Don Bigg", "Tagne", "Khtek", "7liwa", "ElgrandeToto")
+    private val rappersNames = listOf("Figoshin", "Dizzy Dros","Don Bigg", "Tagne", "Khtek", "7liwa", "Elgrande Toto")
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
