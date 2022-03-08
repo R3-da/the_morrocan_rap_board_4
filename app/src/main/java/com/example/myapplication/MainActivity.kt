@@ -1,21 +1,10 @@
 package com.example.myapplication
 
-import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
 import android.content.Context
 import android.media.MediaPlayer
-import android.nfc.Tag
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
-import android.view.MotionEvent
-import android.view.View
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.animation.doOnEnd
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.reddit.indicatorfastscroll.FastScrollItemIndicator
@@ -27,7 +16,15 @@ import java.lang.reflect.Field
 class MainActivity : AppCompatActivity() {
 
     private var mediaPlayer: MediaPlayer? = null
-    private val rappersNames = listOf("Figoshin", "Dizzy Dros","Don Bigg", "Tagne", "Khtek", "7liwa", "Elgrande Toto")
+    private val rappersNames = listOf(
+        "Figoshin",
+        "Dizzy Dros",
+        "Don Bigg",
+        "Tagne",
+        "Khtek",
+        "7liwa",
+        "Elgrande Toto"
+    )
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,10 +48,10 @@ class MainActivity : AppCompatActivity() {
         var pop = AnimatorSet()
 
         // ArrayList of class ItemsViewModel
-        val data = fetchData(this ,rappersNames)
+        val data = fetchData(this, rappersNames)
 
         // This will pass the ArrayList to our Adapter
-        val adapter = CustomAdapter(this,pop,data,mediaPlayer)
+        val adapter = CustomAdapter(this, pop, data, mediaPlayer)
 
         // Setting the Adapter with the recyclerview
         recyclerview.adapter = adapter
@@ -62,21 +59,22 @@ class MainActivity : AppCompatActivity() {
 
         //setting the fast scroller
         fastScrollerView.setupWithRecyclerView(
-                recyclerview,
-                { position ->
-                    val item = data[position] // Get your model object
-                    // or fetch the section at [position] from your database
-                    FastScrollItemIndicator.Text(
-                            item.name.substring(0, 1).toUpperCase() // Grab the first letter and capitalize it
-                    ) // Return a text indicator
-                }
+            recyclerview,
+            { position ->
+                val item = data[position] // Get your model object
+                // or fetch the section at [position] from your database
+                FastScrollItemIndicator.Text(
+                    item.name.replace("[^A-Za-z]".toRegex(), "#").substring(0, 1)
+                        .toUpperCase() // Grab the first letter and capitalize it
+                ) // Return a text indicator
+            }
         )
 
         fastScrollerThumbView.setupWithFastScroller(fastScrollerView)
 
     }
 
-    private fun fetchData(context: Context, rappersNames : List<String>) : ArrayList<RapperData> {
+    private fun fetchData(context: Context, rappersNames: List<String>) : ArrayList<RapperData> {
 
         val drawableFields: Array<Field> = R.drawable::class.java.fields
         val drawableLists = drawableFields.map { it.name }.toTypedArray()
@@ -96,13 +94,29 @@ class MainActivity : AppCompatActivity() {
             //remove white space from rapperName
             rapperNameFiltered = rapperName.filterNot { it.isWhitespace() }.toLowerCase()
 
-            rapperBg = context.resources.getIdentifier(drawableLists.filter { s -> s.endsWith("bg_"+rapperNameFiltered) }[0],"drawable", context.packageName)
-            rapperIc = context.resources.getIdentifier(drawableLists.filter { s -> s.endsWith("ic_"+rapperNameFiltered) }[0],"drawable", context.packageName)
+            rapperBg = context.resources.getIdentifier(
+                drawableLists.filter { s -> s.endsWith("bg_" + rapperNameFiltered) }[0],
+                "drawable",
+                context.packageName
+            )
+            rapperIc = context.resources.getIdentifier(
+                drawableLists.filter { s -> s.endsWith("ic_" + rapperNameFiltered) }[0],
+                "drawable",
+                context.packageName
+            )
             rapperAdlibs = rawLists.filter { s -> s.endsWith(rapperNameFiltered)}.toMutableList()
 
-            rappersData.add(RapperData(rapperName,rapperBg,rapperIc,rapperAdlibs))
+            rappersData.add(RapperData(rapperName, rapperBg, rapperIc, rapperAdlibs))
         }
 
         return rappersData
+    }
+
+    private fun isNumber(s: String): Boolean {
+        return when(s.toIntOrNull())
+        {
+            null -> false
+            else -> true
+        }
     }
 }
