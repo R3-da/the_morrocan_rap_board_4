@@ -8,7 +8,11 @@ import android.nfc.Tag
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
+import android.widget.Button
+import android.widget.ImageButton
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -40,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         //get fast scroller thumb
         val fastScrollerThumbView = findViewById<FastScrollerThumbView>(R.id.fastscroller_thumb)
 
+
         // this creates a vertical layout Manager
         recyclerview.layoutManager = LinearLayoutManager(this)
 
@@ -53,6 +58,7 @@ class MainActivity : AppCompatActivity() {
 
         // Setting the Adapter with the recyclerview
         recyclerview.adapter = adapter
+
 
         //setting the fast scroller
         fastScrollerView.setupWithRecyclerView(
@@ -80,11 +86,13 @@ class MainActivity : AppCompatActivity() {
         var rapperIc : Int
         var rapperAdlibs : MutableList<String>
 
+        val rappersNamesOrdered = rappersNames.sortedBy { it.toString() }
+
 
         val rappersData = ArrayList<RapperData>()
 
         var rapperNameFiltered: String
-        for (rapperName in rappersNames) {
+        for (rapperName in rappersNamesOrdered) {
             //remove white space from rapperName
             rapperNameFiltered = rapperName.filterNot { it.isWhitespace() }.toLowerCase()
 
