@@ -4,6 +4,7 @@ import android.animation.AnimatorSet
 import android.content.Context
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,13 +18,32 @@ class MainActivity : AppCompatActivity() {
 
     private var mediaPlayer: MediaPlayer? = null
     private val rappersNames = listOf(
-        "Figoshin",
+        "7ari",
+        "7liwa",
+        "7toun",
+        "8ird",
+        "21tach",
+        "777ym",
+        "Abduh",
+        "Ali Ssamid",
+        "Anys",
+        "Bo9al",
+        "Dada",
         "Dizzy Dros",
         "Don Bigg",
-        "Tagne",
+        "Elgrande Toto",
+        "Figoshin",
         "Khtek",
-        "7liwa",
-        "Elgrande Toto"
+        "Lferda",
+        "Moro",
+        "Nores",
+        "Saad Dsouli",
+        "Shobee",
+        "Small X",
+        "Snor",
+        "Tagne",
+        "Tflow",
+        "X7kira"
     )
 
 
@@ -93,7 +113,7 @@ class MainActivity : AppCompatActivity() {
         for (rapperName in rappersNamesOrdered) {
             //remove white space from rapperName
             rapperNameFiltered = rapperName.filterNot { it.isWhitespace() }.toLowerCase()
-
+            Log.d("rapperName : ", rapperNameFiltered)
             rapperBg = context.resources.getIdentifier(
                 drawableLists.filter { s -> s.endsWith("bg_" + rapperNameFiltered) }[0],
                 "drawable",

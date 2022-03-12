@@ -32,7 +32,7 @@ class CustomAdapter(private val context: Context, private var pop: AnimatorSet, 
 
     // binds the list items to a view
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
+        holder.rappersView.removeAllViews()
         val ItemsViewModel = mList[position]
 
         // sets the image to the imageview from our itemHolder class
