@@ -13,108 +13,118 @@ import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.OvershootInterpolator
 import android.widget.*
-import android.widget.LinearLayout.*
+import android.widget.LinearLayout.LayoutParams
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
 
-class CustomAdapter(private val context: Context, private var pop: AnimatorSet, private val mList: ArrayList<RapperData>, private var mediaPlayer: MediaPlayer?) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class CustomAdapter(private val context: Context, private var pop: AnimatorSet, private val mList: ArrayList<RapperData>, private var mediaPlayer: MediaPlayer?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+
+    val VIEW_HEADER = 0
+    val VIEW_ITEM = 1
 
     // create new views
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         // inflates the card_view_design view
         // that is used to hold list item
-        val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.card_view_design, parent, false)
-
-        return ViewHolder(view)
+        if (viewType == VIEW_ITEM) {
+            val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.card_view_design, parent, false)
+            return itemHolder(view)
+        }
+            val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.header_design, parent, false)
+            return headView(view)
     }
 
     // binds the list items to a view
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.rappersView.removeAllViews()
-        val ItemsViewModel = mList[position]
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-        // sets the image to the imageview from our itemHolder class
-        holder.imageView.setImageResource(ItemsViewModel.bg)
-
-        // sets the text to the textview from our itemHolder class
-        holder.textView.text = ItemsViewModel.name
-
-        for(i in 0..3) {
-            val button = ImageButton(context)
-
-
-            if(i <= (ItemsViewModel.adlibs.size - 1)) {
-                button.layoutParams = LayoutParams(
-                        context.resources.getDimension(R.dimen.rappers_icon_width).toInt(),
-                        LayoutParams.MATCH_PARENT, //change the parameters as whatever you want
-                        1.0f
-                )
-
-                button.setImageResource(ItemsViewModel.ic)
-                button.scaleType = ImageView.ScaleType.FIT_CENTER
-                button.adjustViewBounds = true
-                button.background = null
-                button.setPadding(0, 0, 0, 0)
-                var param = button.layoutParams as ViewGroup.MarginLayoutParams
-                param.setMargins(10, 10, 10, 10)
-                button.layoutParams = param
-                button.setBackgroundResource(0)
-
-                var adlib = ItemsViewModel.adlibs[i]
-
-                button.setOnClickListener {
-                    pop = setFromXML(button, adlib)
-                }
-                button.alpha = 0.7f
-
-                holder.rappersView.addView(button)
-            }
-            else {
-                button.layoutParams = LayoutParams(
-                        LayoutParams.MATCH_PARENT,
-                        LayoutParams.MATCH_PARENT, //change the parameters as whatever you want
-                )
-
-                button.setImageResource(ItemsViewModel.ic)
-                button.scaleType = ImageView.ScaleType.FIT_CENTER
-                button.adjustViewBounds = true
-                button.background = null
-                button.setPadding(0, 0, 0, 0)
-
-                button.setBackgroundResource(0)
-
-                button.setColorFilter(Color.parseColor("white"))
-                button.alpha = 0.4f
-                val textView = TextView(context)
-                val frameLayout = FrameLayout(context)
-                frameLayout.addView(button)
-                frameLayout.layoutParams = LayoutParams(
-                        context.resources.getDimension(R.dimen.rappers_icon_width).toInt(),
-                        LayoutParams.MATCH_PARENT, //change the parameters as whatever you want
-                1.0f
-                )
-                frameLayout.setPadding(0,0,0,0)
-                var param = frameLayout.layoutParams as ViewGroup.MarginLayoutParams
-                param.setMargins(10, 10, 10, 10)
-                frameLayout.layoutParams = param
-                textView.textSize = context.resources.getDimension(R.dimen.rappers_icon_width).toFloat()
-                textView.text = "?"
-                textView.setTextColor(Color.parseColor("#EF9E2D"))
-                frameLayout.addView(textView)
-                textView.gravity = Gravity.CENTER
-
-                holder.rappersView.addView(frameLayout)
-
-            }
-
-
-
-
-//            setAllParentsClip(button, false)
+        if(position == 0) {
+            holder as headView
         }
+        else {
+            holder as itemHolder
+            holder.rappersView.removeAllViews()
+            val ItemsViewModel = mList[position]
 
+            // sets the image to the imageview from our itemHolder class
+            holder.imageView.setImageResource(ItemsViewModel.bg)
+
+            // sets the text to the textview from our itemHolder class
+            holder.textView.text = ItemsViewModel.name
+
+            for(i in 0..3) {
+                val button = ImageButton(context)
+
+
+                if(i <= (ItemsViewModel.adlibs.size - 1)) {
+                    button.layoutParams = LayoutParams(
+                            context.resources.getDimension(R.dimen.rappers_icon_width).toInt(),
+                            LayoutParams.MATCH_PARENT, //change the parameters as whatever you want
+                            1.0f
+                    )
+
+                    button.setImageResource(ItemsViewModel.ic)
+                    button.scaleType = ImageView.ScaleType.FIT_CENTER
+                    button.adjustViewBounds = true
+                    button.background = null
+                    button.setPadding(0, 0, 0, 0)
+                    var param = button.layoutParams as ViewGroup.MarginLayoutParams
+                    param.setMargins(10, 10, 10, 10)
+                    button.layoutParams = param
+                    button.setBackgroundResource(0)
+
+                    var adlib = ItemsViewModel.adlibs[i]
+
+                    button.setOnClickListener {
+                        pop = setFromXML(button, adlib)
+                    }
+                    button.alpha = 0.7f
+
+                    holder.rappersView.addView(button)
+                }
+                else {
+                    button.layoutParams = LayoutParams(
+                            LayoutParams.MATCH_PARENT,
+                            LayoutParams.MATCH_PARENT, //change the parameters as whatever you want
+                    )
+
+                    button.setImageResource(ItemsViewModel.ic)
+                    button.scaleType = ImageView.ScaleType.FIT_CENTER
+                    button.adjustViewBounds = true
+                    button.background = null
+                    button.setPadding(0, 0, 0, 0)
+
+                    button.setBackgroundResource(0)
+
+                    button.setColorFilter(Color.parseColor("white"))
+                    button.alpha = 0.4f
+                    val textView = TextView(context)
+                    val frameLayout = FrameLayout(context)
+                    frameLayout.addView(button)
+                    frameLayout.layoutParams = LayoutParams(
+                            context.resources.getDimension(R.dimen.rappers_icon_width).toInt(),
+                            LayoutParams.MATCH_PARENT, //change the parameters as whatever you want
+                            1.0f
+                    )
+                    frameLayout.setPadding(0, 0, 0, 0)
+                    var param = frameLayout.layoutParams as ViewGroup.MarginLayoutParams
+                    param.setMargins(10, 10, 10, 10)
+                    frameLayout.layoutParams = param
+                    textView.textSize = context.resources.getDimension(R.dimen.rappers_icon_width).toFloat()
+                    textView.text = "?"
+                    textView.setTextColor(Color.parseColor("#EF9E2D"))
+                    frameLayout.addView(textView)
+                    textView.gravity = Gravity.CENTER
+
+                    holder.rappersView.addView(frameLayout)
+
+                }
+//            setAllParentsClip(button, false)
+            }
+        }
     }
 
     // return the number of the items in the list
@@ -122,8 +132,26 @@ class CustomAdapter(private val context: Context, private var pop: AnimatorSet, 
         return mList.size
     }
 
+    override fun getItemViewType(position: Int): Int {
+        //check if header required then position must be one and return the header view
+        return if (isHeader(position))
+            VIEW_HEADER
+        else VIEW_ITEM
+    }
+
+    private fun isHeader(position: Int): Boolean {
+        //Check the position of item if item at position 0 then return true else false
+        return position == 0
+    }
+
+    class headView(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
+
+        val header: ImageView = itemView.findViewById(R.id.headerimage)
+
+    }
+
     // Holds the views for adding it to image and text
-    class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
+    class itemHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val imageView: ImageView = itemView.findViewById(R.id.imageview)
         val textView: TextView = itemView.findViewById(R.id.textView)
         val rappersView : LinearLayout = itemView.findViewById(R.id.rappersFaces)
