@@ -54,4 +54,7 @@ dependencies {
 
     //indicator fast scroller
     implementation 'com.reddit:indicator-fast-scroll:1.0.1'
+
+    //collapse toolbar dependencies
+    implementation 'com.google.android.material:material:1.1.0-alpha10'
 }

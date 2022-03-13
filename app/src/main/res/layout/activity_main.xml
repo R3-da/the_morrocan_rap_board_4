@@ -9,38 +9,6 @@
     tools:context=".MainActivity"
     android:background="@color/orange_cold"
 >
-
-
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:itemCount="5"
-            tools:listitem="@layout/card_view_design"/>
-        <com.reddit.indicatorfastscroll.FastScrollerView
-            android:id="@+id/fastscroller"
-            android:layout_width="25dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="right"
-            />
-
-        <com.reddit.indicatorfastscroll.FastScrollerThumbView
-            android:id="@+id/fastscroller_thumb"
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:layout_alignBottom="@+id/fastscroller"
-            android:layout_alignTop="@+id/fastscroller"
-            android:layout_marginEnd="40dp"
-            android:layout_toStartOf="@+id/fastscroller"
-            android:layout_gravity="right"
-            />
-    </FrameLayout>
-
-
     <!-- AppBarLayout is a wrapper for a Toolbar in order to apply scrolling effects. -->
     <!-- Note that AppBarLayout expects to be the first child nested within a CoordinatorLayout -->
     <com.google.android.material.appbar.AppBarLayout
@@ -50,17 +18,57 @@
         android:theme="@style/Theme.MyApplication">
 
         <!-- Toolbar is the actual app bar with text and the action items -->
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="wrap_content"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/orange_solid"
-            app:layout_scrollFlags="scroll|enterAlways"
-            tools:layout_conversion_absoluteHeight="56dp"
-            tools:layout_editor_absoluteY="0dp"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_conversion_absoluteWidth="16dp" />
+            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+            app:contentScrim="@color/orange_solid"
+            app:title="@string/app_name"
+            >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:src="@drawable/header_image"
+                android:scaleType="centerCrop"/>
+
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"/>
+
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:itemCount="5"
+        tools:listitem="@layout/card_view_design"/>
+    <com.reddit.indicatorfastscroll.FastScrollerView
+        android:id="@+id/fastscroller"
+        android:layout_width="25dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        />
+
+    <com.reddit.indicatorfastscroll.FastScrollerThumbView
+        android:id="@+id/fastscroller_thumb"
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/fastscroller"
+        android:layout_alignTop="@+id/fastscroller"
+        android:layout_marginEnd="40dp"
+        android:layout_toStartOf="@+id/fastscroller"
+        android:layout_gravity="right"
+        />
+
+
 
 
 
