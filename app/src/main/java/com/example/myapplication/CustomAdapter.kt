@@ -21,30 +21,20 @@ import java.util.*
 class CustomAdapter(private val context: Context, private var pop: AnimatorSet, private val mList: ArrayList<RapperData>, private var mediaPlayer: MediaPlayer?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
-    val VIEW_HEADER = 0
-    val VIEW_ITEM = 1
 
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         // inflates the card_view_design view
         // that is used to hold list item
-        if (viewType == VIEW_ITEM) {
-            val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.card_view_design, parent, false)
-            return itemHolder(view)
-        }
-            val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.header_design, parent, false)
-            return headView(view)
+        val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.card_view_design, parent, false)
+        return itemHolder(view)
+
     }
 
     // binds the list items to a view
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-        if(position == 0) {
-            holder as headView
-        }
-        else {
             holder as itemHolder
             holder.rappersView.removeAllViews()
             val ItemsViewModel = mList[position]
@@ -124,7 +114,6 @@ class CustomAdapter(private val context: Context, private var pop: AnimatorSet, 
                 }
 //            setAllParentsClip(button, false)
             }
-        }
     }
 
     // return the number of the items in the list
@@ -132,23 +121,6 @@ class CustomAdapter(private val context: Context, private var pop: AnimatorSet, 
         return mList.size
     }
 
-    override fun getItemViewType(position: Int): Int {
-        //check if header required then position must be one and return the header view
-        return if (isHeader(position))
-            VIEW_HEADER
-        else VIEW_ITEM
-    }
-
-    private fun isHeader(position: Int): Boolean {
-        //Check the position of item if item at position 0 then return true else false
-        return position == 0
-    }
-
-    class headView(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
-
-        val header: ImageView = itemView.findViewById(R.id.headerimage)
-
-    }
 
     // Holds the views for adding it to image and text
     class itemHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
