@@ -30,6 +30,12 @@
                 android:layout_height="200dp"
                 android:src="@drawable/header_image"
                 android:scaleType="centerCrop"/>
+            <ImageView
+                android:layout_width="270dp"
+                android:layout_height="42dp"
+                android:layout_gravity="center"
+                android:scaleType="fitEnd"
+                android:src="@drawable/title_rwipaboard" />
 
 
             <androidx.appcompat.widget.Toolbar
