@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
 
-class CustomAdapter(private val context: Context, private var pop: AnimatorSet, private val mList: ArrayList<RapperData>, private var mediaPlayer: MediaPlayer?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CustomAdapter(private val context: Context, private var pop: AnimatorSet, private var mList: ArrayList<RapperData>, private var mediaPlayer: MediaPlayer?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
 
@@ -119,6 +119,12 @@ class CustomAdapter(private val context: Context, private var pop: AnimatorSet, 
     // return the number of the items in the list
     override fun getItemCount(): Int {
         return mList.size
+    }
+
+    // To get the data to search Category
+    fun filterList(filteredCourseList: ArrayList<RapperData>) {
+        this.mList = filteredCourseList;
+        notifyDataSetChanged();
     }
 
 

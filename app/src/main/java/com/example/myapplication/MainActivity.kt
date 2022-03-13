@@ -46,6 +46,9 @@ class MainActivity : AppCompatActivity() {
         "X7kira"
     )
 
+    lateinit var adapter: CustomAdapter
+    lateinit var data: ArrayList<RapperData>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,10 +71,10 @@ class MainActivity : AppCompatActivity() {
         var pop = AnimatorSet()
 
         // ArrayList of class ItemsViewModel
-        val data = fetchData(this, rappersNames)
+        data = fetchData(this, rappersNames)
 
         // This will pass the ArrayList to our Adapter
-        val adapter = CustomAdapter(this, pop, data, mediaPlayer)
+        adapter = CustomAdapter(this, pop, data, mediaPlayer)
 
         // Setting the Adapter with the recyclerview
         recyclerview.adapter = adapter
@@ -138,5 +141,21 @@ class MainActivity : AppCompatActivity() {
             null -> false
             else -> true
         }
+    }
+
+    private fun filter(text: String) {
+
+        val filteredCourseAry: ArrayList<RapperData> = ArrayList()
+
+        val courseAry : ArrayList<RapperData> = data
+
+        for (eachCourse in courseAry) {
+            if (eachCourse.name!!.toLowerCase().contains(text.toLowerCase())) {
+                filteredCourseAry.add(eachCourse)
+            }
+        }
+
+        //calling a method of the adapter class and passing the filtered list
+        adapter.filterList(filteredCourseAry);
     }
 }
