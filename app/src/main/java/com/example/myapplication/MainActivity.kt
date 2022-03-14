@@ -4,8 +4,12 @@ import android.animation.AnimatorSet
 import android.content.Context
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.reddit.indicatorfastscroll.FastScrollItemIndicator
@@ -61,6 +65,9 @@ class MainActivity : AppCompatActivity() {
         //get fast scroller
         val fastScrollerView = findViewById<FastScrollerView>(R.id.fastscroller)
 
+        //get search bar
+        val sample_editText = findViewById<AppCompatEditText>(R.id.sample_editText)
+
         //get fast scroller thumb
         val fastScrollerThumbView = findViewById<FastScrollerThumbView>(R.id.fastscroller_thumb)
 
@@ -94,6 +101,19 @@ class MainActivity : AppCompatActivity() {
         )
 
         fastScrollerThumbView.setupWithFastScroller(fastScrollerView)
+
+        sample_editText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+                filter(p0.toString())
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+        })
 
     }
 
