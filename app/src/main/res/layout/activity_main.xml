@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     tools:context=".MainActivity"
-    android:background="@color/orange_cold"
+    android:background="@color/yellow"
 >
     <!-- AppBarLayout is a wrapper for a Toolbar in order to apply scrolling effects. -->
     <!-- Note that AppBarLayout expects to be the first child nested within a CoordinatorLayout -->
@@ -28,11 +28,20 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:src="@drawable/header_image"
-                android:scaleType="centerCrop"/>
+                android:scaleType="centerCrop"
+                android:background="@color/yellow"/>
             <ImageView
-                android:layout_width="270dp"
-                android:layout_height="42dp"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_gravity="top"
+                android:translationY="10dp"
+                android:scaleType="fitEnd"
+                android:src="@drawable/microphone" />
+
+            <ImageView
+                android:layout_width="290dp"
+                android:layout_height="48dp"
+                android:translationY="20dp"
                 android:layout_gravity="center"
                 android:scaleType="fitEnd"
                 android:src="@drawable/title_rwipaboard" />
@@ -48,7 +57,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="30dp"
-                    android:background="@color/white"
+                    android:background="@color/yellow"
                     android:orientation="horizontal"
                     >
                 <androidx.appcompat.widget.AppCompatEditText
@@ -56,17 +65,17 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@null"
+                    android:background="@drawable/shape_searchbar"
                     android:drawableStart="@drawable/ic_baseline_search_24"
-                    android:drawablePadding="0dp"
-                    android:hint="Search rappers"
+                    android:drawablePadding="5dp"
+                    android:hint="Search rappers..."
                     android:imeOptions="actionSearch"
                     android:inputType="text"
                     android:maxLines="1"
                     android:padding="5dp"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/orange_cold"
-                    android:textSize="15sp"
+                    android:textColorHint="#F7C2A2"
+                    android:textSize="22sp"
                     />
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.Toolbar>
@@ -81,6 +90,7 @@
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/shape_recyclerview"
         tools:itemCount="5"
         tools:listitem="@layout/card_view_design"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
