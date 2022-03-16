@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_scrollFlags="scroll|snap|enterAlways|enterAlwaysCollapsed"
-            app:contentScrim="@color/orange_solid"
+            app:contentScrim="@color/yellow"
             >
 
             <ImageView
@@ -75,7 +75,7 @@
                     android:padding="5dp"
                     android:textColor="@color/black"
                     android:textColorHint="#F7C2A2"
-                    android:textSize="22sp"
+                    android:textSize="20sp"
                     />
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.Toolbar>

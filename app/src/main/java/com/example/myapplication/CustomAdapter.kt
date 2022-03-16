@@ -105,7 +105,7 @@ class CustomAdapter(private val context: Context, private var pop: AnimatorSet, 
                     frameLayout.layoutParams = param
                     textView.textSize = context.resources.getDimension(R.dimen.rappers_icon_width).toFloat()
                     textView.text = "?"
-                    textView.setTextColor(Color.parseColor("#EF9E2D"))
+                    textView.setTextColor(Color.parseColor("#EA553D"))
                     frameLayout.addView(textView)
                     textView.gravity = Gravity.CENTER
 
