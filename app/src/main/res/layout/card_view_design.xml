@@ -38,7 +38,6 @@
 
 
         <LinearLayout
-            android:id="@+id/rappersFaces"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
@@ -57,7 +56,16 @@
                 android:layout_gravity="center|left"
                 android:gravity="center_horizontal"
                 android:textColor="@color/black"
-                android:translationZ="5dp"/>
+                />
+            <LinearLayout
+                android:id="@+id/rappersFaces"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:clipChildren="false"
+                android:clipToOutline="false"
+                android:layout_gravity="right"/>
+
 
         </LinearLayout>
 

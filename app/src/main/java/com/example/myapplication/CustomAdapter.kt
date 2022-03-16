@@ -14,6 +14,8 @@ import android.view.animation.AccelerateInterpolator
 import android.view.animation.OvershootInterpolator
 import android.widget.*
 import android.widget.LinearLayout.LayoutParams
+import androidx.core.graphics.toColor
+import androidx.core.graphics.toColorLong
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
@@ -105,7 +107,7 @@ class CustomAdapter(private val context: Context, private var pop: AnimatorSet, 
                     frameLayout.layoutParams = param
                     textView.textSize = context.resources.getDimension(R.dimen.rappers_icon_width).toFloat()
                     textView.text = "?"
-                    textView.setTextColor(Color.parseColor("#EA553D"))
+                    textView.setTextColor(Color.parseColor("#F8C63E"))
                     frameLayout.addView(textView)
                     textView.gravity = Gravity.CENTER
 

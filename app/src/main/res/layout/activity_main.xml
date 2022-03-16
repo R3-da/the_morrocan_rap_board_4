@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
-                android:background="@color/yellow"/>
+                android:src="@drawable/header"/>
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
@@ -75,7 +75,7 @@
                     android:padding="5dp"
                     android:textColor="@color/black"
                     android:textColorHint="#F7C2A2"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     />
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.Toolbar>
