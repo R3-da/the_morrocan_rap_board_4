@@ -67,15 +67,16 @@
                     android:layout_weight="1"
                     android:background="@drawable/shape_searchbar"
                     android:drawableStart="@drawable/ic_baseline_search_24"
-                    android:drawablePadding="5dp"
+                    android:drawablePadding="12dp"
                     android:hint="Search rappers..."
                     android:imeOptions="actionSearch"
                     android:inputType="text"
                     android:maxLines="1"
-                    android:padding="5dp"
-                    android:textColor="@color/black"
+                    android:paddingVertical="6dp"
+                    android:paddingLeft="15dp"
+                    android:textColor="@color/mate_black"
                     android:textColorHint="#F7C2A2"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     />
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.Toolbar>
@@ -101,6 +102,7 @@
         android:layout_width="25dp"
         android:layout_height="match_parent"
         android:layout_gravity="right"
+        android:textColor="@color/mate_black"
         />
 
     <com.reddit.indicatorfastscroll.FastScrollerThumbView
@@ -112,6 +114,8 @@
         android:layout_marginEnd="40dp"
         android:layout_toStartOf="@+id/fastscroller"
         android:layout_gravity="right"
+        app:thumbColor="@color/mate_black"
+        android:textColor="#FDF1CE"
         />
 
 
