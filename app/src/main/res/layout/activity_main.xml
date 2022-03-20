@@ -25,7 +25,6 @@
             app:contentScrim="@color/yellow"
             >
 
-
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -36,22 +35,36 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
-                <ImageView
-                    android:layout_marginTop="20dp"
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/microphone"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center"
                     android:layout_weight="1"/>
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginHorizontal="50px"
-                    android:src="@drawable/title_rwipaboard"
-                    android:layout_weight="1"/>
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/microphone" />
+                </FrameLayout>
 
-
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="40dp"
+                        android:translationX="7dp"
+                        android:src="@drawable/title_rwipaboard"
+                        />
+                </FrameLayout>
 
 
 

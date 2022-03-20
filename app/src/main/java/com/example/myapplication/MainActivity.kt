@@ -190,7 +190,7 @@ class MainActivity : AppCompatActivity() {
             )
             rapperAdlibs = rawLists.filter { s -> s.endsWith(rapperNameFiltered)}.toMutableList()
 
-            rappersData.add(RapperData(rapperName, rapperBg, rapperIc, rapperAdlibs))
+            rappersData.add(RapperData(rapperName.replace(" ","\n"), rapperBg, rapperIc, rapperAdlibs))
         }
 
         return rappersData
@@ -203,7 +203,9 @@ class MainActivity : AppCompatActivity() {
         val courseAry : ArrayList<RapperData> = rappersData
 
         for (eachCourse in courseAry) {
-            if (eachCourse.name!!.toLowerCase().contains(text.toLowerCase())) {
+            if (eachCourse.name!!.toLowerCase().contains(text.trim().replace(" ", "\n").toLowerCase())
+                || eachCourse.name!!.toLowerCase().replace("\n","").contains(text.trim().toLowerCase())
+                || eachCourse.name!!.toLowerCase().contains(text.trim().replace(" ", "").toLowerCase())) {
                 filteredCourseAry.add(eachCourse)
             }
         }
