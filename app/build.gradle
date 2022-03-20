@@ -60,4 +60,7 @@ dependencies {
 
     //sdp unit
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
+
+    //implement goodle admob sdk
+    implementation 'com.google.android.gms:play-services-ads:20.6.0'
 }
