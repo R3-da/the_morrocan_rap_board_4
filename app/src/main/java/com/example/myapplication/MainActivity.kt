@@ -22,6 +22,8 @@ class MainActivity : AppCompatActivity() {
 
     private var mediaPlayer: MediaPlayer? = null
     private val rappersNames = listOf(
+        "Sofia Vato",
+        "Iguidr",
         "Breezy",
         "Demon",
         "Diib",
@@ -39,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         "Komy",
         "Kouz1",
         "Krtasnssa",
-        "L7A9Ed",
+        "L7a9ed",
         "Lbenj",
         "Lmorphine",
         "Lmoutchou",
