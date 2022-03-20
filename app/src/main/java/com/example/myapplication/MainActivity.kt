@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
     )
 
     lateinit var adapter: CustomAdapter
-    lateinit var data: ArrayList<RapperData>
+    lateinit var rappersData: ArrayList<RapperData>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -119,10 +119,10 @@ class MainActivity : AppCompatActivity() {
         var pop = AnimatorSet()
 
         // ArrayList of class ItemsViewModel
-        data = fetchData(this, rappersNames)
+        rappersData = fetchData(this, rappersNames)
 
         // This will pass the ArrayList to our Adapter
-        adapter = CustomAdapter(this, pop, data, mediaPlayer)
+        adapter = CustomAdapter(this, pop, rappersData, mediaPlayer)
 
         // Setting the Adapter with the recyclerview
         recyclerview.adapter = adapter
@@ -132,7 +132,7 @@ class MainActivity : AppCompatActivity() {
         fastScrollerView.setupWithRecyclerView(
             recyclerview,
             { position ->
-                val item = data[position] // Get your model object
+                val item = rappersData[position] // Get your model object
                 // or fetch the section at [position] from your database
                 FastScrollItemIndicator.Text(
                     item.name.replace("[^A-Za-z]".toRegex(), "#").substring(0, 1)
@@ -200,7 +200,7 @@ class MainActivity : AppCompatActivity() {
 
         val filteredCourseAry: ArrayList<RapperData> = ArrayList()
 
-        val courseAry : ArrayList<RapperData> = data
+        val courseAry : ArrayList<RapperData> = rappersData
 
         for (eachCourse in courseAry) {
             if (eachCourse.name!!.toLowerCase().contains(text.toLowerCase())) {
