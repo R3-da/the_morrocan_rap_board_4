@@ -34,7 +34,6 @@ class CustomAdapter(private val context: Context, private var pop: AnimatorSet, 
 
     // binds the list items to a view
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-
             holder as itemHolder
             holder.rappersView.removeAllViews()
             val rapperData = rappersData[position]
