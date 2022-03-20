@@ -28,7 +28,7 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:src="@drawable/header" />
 
@@ -38,10 +38,10 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/microphone"
-                    android:translationY="50px"
                     android:layout_weight="1"/>
 
                 <ImageView
@@ -49,49 +49,47 @@
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="50px"
                     android:src="@drawable/title_rwipaboard"
-                    android:translationY="-100px"
                     android:layout_weight="1"/>
 
-            </LinearLayout>
 
 
 
-            <androidx.appcompat.widget.Toolbar
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
-                android:layout_gravity="bottom"
-                app:layout_collapseMode="pin"
-                >
-                <androidx.appcompat.widget.LinearLayoutCompat
+
+                <androidx.appcompat.widget.Toolbar
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="30dp"
-                    android:background="@color/yellow"
-                    android:orientation="horizontal"
+                    android:layout_height="?attr/actionBarSize"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+                    android:layout_gravity="bottom"
+                    app:layout_collapseMode="pin"
                     >
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/sample_editText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/shape_searchbar"
-                    android:drawableStart="@drawable/ic_baseline_search_24"
-                    android:drawablePadding="12dp"
-                    android:hint="Search rappers..."
-                    android:imeOptions="actionSearch"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:paddingVertical="6dp"
-                    android:paddingLeft="15dp"
-                    android:textColor="@color/mate_black"
-                    android:textColorHint="#F7C2A2"
-                    android:textSize="15sp"
-                    />
-                </androidx.appcompat.widget.LinearLayoutCompat>
-            </androidx.appcompat.widget.Toolbar>
-
-
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:background="@color/yellow"
+                        android:orientation="horizontal"
+                        >
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/sample_editText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_searchbar"
+                        android:drawableStart="@drawable/ic_baseline_search_24"
+                        android:drawablePadding="12dp"
+                        android:hint="Search rappers..."
+                        android:imeOptions="actionSearch"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingVertical="6dp"
+                        android:paddingLeft="15dp"
+                        android:textColor="@color/mate_black"
+                        android:textColorHint="#F7C2A2"
+                        android:textSize="15sp"
+                        />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </androidx.appcompat.widget.Toolbar>
+            </LinearLayout>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
 
