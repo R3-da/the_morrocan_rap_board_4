@@ -25,26 +25,36 @@
             app:contentScrim="@color/yellow"
             >
 
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/header"/>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_gravity="top"
-                android:translationY="10dp"
-                android:scaleType="fitEnd"
-                android:src="@drawable/microphone" />
+                android:src="@drawable/header" />
 
-            <ImageView
-                android:layout_width="290dp"
-                android:layout_height="48dp"
-                android:translationY="20dp"
-                android:layout_gravity="center"
-                android:scaleType="fitEnd"
-                android:src="@drawable/title_rwipaboard" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/microphone"
+                    android:translationY="50px"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="50px"
+                    android:src="@drawable/title_rwipaboard"
+                    android:translationY="-100px"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+
 
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"

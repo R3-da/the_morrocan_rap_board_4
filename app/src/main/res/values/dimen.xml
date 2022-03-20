@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="rappers_icon_width">20dp</dimen>
-    <dimen name="question_mark_size">20sp</dimen>
+    <dimen name="question_mark_size">15dp</dimen>
+    <dimen name="rappers_faces_vertical_margin">5dp</dimen>
+    <dimen name="rappers_faces_horizontal_margin">5dp</dimen>
 </resources>

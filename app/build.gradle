@@ -57,4 +57,7 @@ dependencies {
 
     //collapse toolbar dependencies
     implementation 'com.google.android.material:material:1.1.0-alpha10'
+
+    //sdp unit
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
 }

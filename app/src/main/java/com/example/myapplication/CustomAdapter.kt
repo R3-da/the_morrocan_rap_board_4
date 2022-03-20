@@ -6,6 +6,7 @@ import android.content.Context
 import android.graphics.Color
 import android.media.MediaPlayer
 import android.util.Log
+import android.util.TypedValue
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -65,7 +66,11 @@ class CustomAdapter(private val context: Context, private var pop: AnimatorSet, 
                     )
 
                     val param = rapperButton.layoutParams as ViewGroup.MarginLayoutParams
-                    param.setMargins(10, 10, 10, 10)
+                    param.setMargins(
+                            context.resources.getDimension(R.dimen.rappers_faces_horizontal_margin).toInt(),
+                            context.resources.getDimension(R.dimen.rappers_faces_vertical_margin).toInt(),
+                            context.resources.getDimension(R.dimen.rappers_faces_horizontal_margin).toInt(),
+                            context.resources.getDimension(R.dimen.rappers_faces_vertical_margin).toInt())
                     rapperButton.layoutParams = param
                     rapperButton.setBackgroundResource(0)
 
@@ -94,9 +99,13 @@ class CustomAdapter(private val context: Context, private var pop: AnimatorSet, 
                     )
                     frameLayout.setPadding(0, 0, 0, 0)
                     val param = frameLayout.layoutParams as ViewGroup.MarginLayoutParams
-                    param.setMargins(10, 10, 10, 10)
+                    param.setMargins(
+                            context.resources.getDimension(R.dimen.rappers_faces_horizontal_margin).toInt(),
+                            context.resources.getDimension(R.dimen.rappers_faces_vertical_margin).toInt(),
+                            context.resources.getDimension(R.dimen.rappers_faces_horizontal_margin).toInt(),
+                            context.resources.getDimension(R.dimen.rappers_faces_vertical_margin).toInt())
                     frameLayout.layoutParams = param
-                    textView.textSize = context.resources.getDimension(R.dimen.rappers_icon_width).toFloat()
+                    textView.textSize = context.resources.getDimension(R.dimen.question_mark_size).toFloat()
                     textView.text = "?"
                     textView.setTextColor(Color.parseColor("#F8C63E"))
                     frameLayout.addView(textView)
@@ -123,7 +132,7 @@ class CustomAdapter(private val context: Context, private var pop: AnimatorSet, 
         val imageView: ImageView = itemView.findViewById(R.id.imageview)
         val textView: TextView = itemView.findViewById(R.id.textView)
         val rappersView : LinearLayout = itemView.findViewById(R.id.rappersFaces)
-
+        val textFrame : FrameLayout = itemView.findViewById(R.id.textFrame)
     }
 
     fun setFromXML(view: View, adlib: String) : AnimatorSet{
