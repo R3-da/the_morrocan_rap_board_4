@@ -22,8 +22,6 @@ import java.util.*
 
 class CustomAdapter(private val context: Context, private var pop: AnimatorSet, private var mList: ArrayList<RapperData>, private var mediaPlayer: MediaPlayer?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-
-
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         // inflates the card_view_design view
@@ -112,9 +110,7 @@ class CustomAdapter(private val context: Context, private var pop: AnimatorSet, 
                     textView.gravity = Gravity.CENTER
 
                     holder.rappersView.addView(frameLayout)
-
                 }
-//            setAllParentsClip(button, false)
             }
     }
 
@@ -128,7 +124,6 @@ class CustomAdapter(private val context: Context, private var pop: AnimatorSet, 
         this.mList = filteredCourseList;
         notifyDataSetChanged();
     }
-
 
     // Holds the views for adding it to image and text
     class itemHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
@@ -192,14 +187,4 @@ class CustomAdapter(private val context: Context, private var pop: AnimatorSet, 
         return animator
     }
 
-    private fun setAllParentsClip(view: View, enabled: Boolean) {
-        var view = view
-        while (view.parent != null && view.parent is ViewGroup) {
-            val viewGroup = view.parent as ViewGroup
-            viewGroup.clipChildren = enabled
-            viewGroup.clipToPadding = enabled
-            view = viewGroup
-            Log.d("tag", "1")
-        }
-    }
 }

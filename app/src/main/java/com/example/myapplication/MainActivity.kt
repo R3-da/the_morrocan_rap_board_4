@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         "Ouenza",
         "Pakkun",
         "Pauseflow",
-        "Profitza3Im",
+        "Profitza3im",
         "Sa3erman",
         "Spleux",
         "Stormy",
@@ -92,7 +92,6 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var adapter: CustomAdapter
     lateinit var data: ArrayList<RapperData>
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -193,14 +192,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         return rappersData
-    }
-
-    private fun isNumber(s: String): Boolean {
-        return when(s.toIntOrNull())
-        {
-            null -> false
-            else -> true
-        }
     }
 
     private fun filter(text: String) {
