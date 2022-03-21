@@ -56,7 +56,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:translationY="-40dp">
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -116,6 +117,8 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         />
 
+
+
     <com.reddit.indicatorfastscroll.FastScrollerView
         android:id="@+id/fastscroller"
         android:layout_width="25dp"
@@ -136,5 +139,22 @@
         app:thumbColor="@color/mate_black"
         android:textColor="#FDF1CE"
         />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/mate_black">
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+        </com.google.android.gms.ads.AdView>
+    </FrameLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

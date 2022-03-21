@@ -8,6 +8,7 @@
 
     <padding
         android:top="15dp"
+        android:bottom="50dp"
         />
 
     <corners
