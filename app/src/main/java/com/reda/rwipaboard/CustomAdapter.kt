@@ -30,7 +30,6 @@ class CustomAdapter(private val context: Context, private var pop: AnimatorSet, 
         val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.card_view_design, parent, false)
         return itemHolder(view)
-
     }
 
     // binds the list items to a view
@@ -45,6 +44,7 @@ class CustomAdapter(private val context: Context, private var pop: AnimatorSet, 
             // sets the text to the textview from our itemHolder class
             holder.textView.text = rapperData.name
 
+            // looping through available adlibs assign them and fill empty icons
             for(i in 0..3) {
                 val rapperButton = ImageButton(context)
 
@@ -57,7 +57,6 @@ class CustomAdapter(private val context: Context, private var pop: AnimatorSet, 
 
                 if(i <= (rapperData.adlibs.size - 1)) {
                     val adlib = rapperData.adlibs[i]
-
 
                     rapperButton.layoutParams = LayoutParams(
                             context.resources.getDimension(R.dimen.rappers_icon_width).toInt(),
@@ -75,7 +74,7 @@ class CustomAdapter(private val context: Context, private var pop: AnimatorSet, 
                     rapperButton.setBackgroundResource(0)
 
                     rapperButton.setOnClickListener {
-                        pop = setFromXML(rapperButton, adlib)
+                        pop = setAction(rapperButton, adlib)
                     }
                     rapperButton.alpha = 0.7f
 
@@ -132,10 +131,10 @@ class CustomAdapter(private val context: Context, private var pop: AnimatorSet, 
         val imageView: ImageView = itemView.findViewById(R.id.imageview)
         val textView: TextView = itemView.findViewById(R.id.textView)
         val rappersView : LinearLayout = itemView.findViewById(R.id.rappersFaces)
-        val textFrame : FrameLayout = itemView.findViewById(R.id.textFrame)
     }
 
-    fun setFromXML(view: View, adlib: String) : AnimatorSet{
+    // Assign mediaplayer and animation listner to rappers icons
+    fun setAction(view: View, adlib: String) : AnimatorSet{
         view.setOnClickListener(null)
 
         if(mediaPlayer != null) {
@@ -148,11 +147,12 @@ class CustomAdapter(private val context: Context, private var pop: AnimatorSet, 
         pop = popAnim(animDuration, view, pop)
 
         view.setOnClickListener{
-            setFromXML(view, adlib)
+            setAction(view, adlib)
         }
         return pop
     }
 
+    //defining the animation
     private fun popAnim(pause_duration: Long, view: View, pop: AnimatorSet) : AnimatorSet{
         pop.end()
         val popOutZ = ObjectAnimator.ofFloat(view, "translationZ", 1f)
@@ -183,6 +183,7 @@ class CustomAdapter(private val context: Context, private var pop: AnimatorSet, 
         return pop
     }
 
+    //setting the animation
     private fun setAnim(view: View, propName: String, valueFrom: Float, valueTo: Float, duration: Long) : ObjectAnimator {
         val animator = ObjectAnimator.ofFloat(view, propName, valueFrom, valueTo)
         animator.duration = duration
