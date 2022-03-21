@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.reda.rwipaboard
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator

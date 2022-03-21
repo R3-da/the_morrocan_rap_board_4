@@ -8,7 +8,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.example.myapplication"
+        applicationId "com.reda.rwipaboard"
         minSdkVersion 21
         targetSdkVersion 31
         versionCode 1
@@ -63,4 +63,5 @@ dependencies {
 
     //implement goodle admob sdk
     implementation 'com.google.android.gms:play-services-ads:20.6.0'
+
 }
