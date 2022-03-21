@@ -190,7 +190,6 @@ class MainActivity : AppCompatActivity() {
         for (rapperName in rappersNamesOrdered) {
             //remove white space from rapperName
             rapperNameFiltered = rapperName.filterNot { it.isWhitespace() }.toLowerCase()
-            Log.d("rapperName : ", rapperNameFiltered)
             rapperBg = context.resources.getIdentifier(
                 drawableLists.filter { s -> s.endsWith("bg_" + rapperNameFiltered) }[0],
                 "drawable",

@@ -3,7 +3,8 @@
     package="com.reda.rwipaboard"
     android:installLocation="auto"
     android:versionCode="1"
-    android:versionName="1.0">
+    android:versionName="1.0"
+    android:targetSandboxVersion="2">
 
     <application
         android:allowBackup="true"
@@ -15,9 +16,10 @@
         >
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713"/>
+            android:value="ca-app-pub-9270866286114955~4262901803"/>
         <activity android:name=".MainActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
