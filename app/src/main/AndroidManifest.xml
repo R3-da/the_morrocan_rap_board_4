@@ -6,6 +6,10 @@
     android:versionName="1.0"
     android:targetSandboxVersion="2">
 
+    <!-- Include required permissions for Google Mobile Ads to run. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,7 +20,7 @@
         >
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-9270866286114955~4262901803"/>
+            android:value="ca-app-pub-2379220020769706~1777005541"/>
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait"
             android:exported="true">
