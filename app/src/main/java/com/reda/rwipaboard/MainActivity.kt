@@ -149,7 +149,7 @@ class MainActivity : AppCompatActivity() {
                 // or fetch the section at [position] from your database
                 FastScrollItemIndicator.Text(
                     item.name.replace("[^A-Za-z]".toRegex(), "#").substring(0, 1)
-                        .toUpperCase() // Grab the first letter and capitalize it
+                        .uppercase() // Grab the first letter and capitalize it
                 ) // Return a text indicator
             }
         )
@@ -189,7 +189,7 @@ class MainActivity : AppCompatActivity() {
         var rapperNameFiltered: String
         for (rapperName in rappersNamesOrdered) {
             //remove white space from rapperName
-            rapperNameFiltered = rapperName.filterNot { it.isWhitespace() }.toLowerCase()
+            rapperNameFiltered = rapperName.filterNot { it.isWhitespace() }.lowercase()
             rapperBg = context.resources.getIdentifier(
                 drawableLists.filter { s -> s.endsWith("bg_" + rapperNameFiltered) }[0],
                 "drawable",
@@ -215,9 +215,9 @@ class MainActivity : AppCompatActivity() {
         val courseAry : ArrayList<RapperData> = rappersData
 
         for (eachCourse in courseAry) {
-            if (eachCourse.name!!.toLowerCase().contains(text.trim().replace(" ", "\n").toLowerCase())
-                || eachCourse.name!!.toLowerCase().replace("\n","").contains(text.trim().toLowerCase())
-                || eachCourse.name!!.toLowerCase().contains(text.trim().replace(" ", "").toLowerCase())) {
+            if (eachCourse.name!!.lowercase().contains(text.trim().replace(" ", "\n").lowercase())
+                || eachCourse.name!!.lowercase().replace("\n","").contains(text.trim().lowercase())
+                || eachCourse.name!!.lowercase().contains(text.trim().replace(" ", "").lowercase())) {
                 filteredCourseAry.add(eachCourse)
             }
         }
