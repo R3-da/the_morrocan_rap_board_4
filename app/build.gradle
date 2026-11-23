@@ -6,13 +6,13 @@ plugins {
 android {
 
     defaultConfig {
-        compileSdk 35
-        buildToolsVersion = "35.0.0"
+        compileSdk 36
+        buildToolsVersion = "36.0.0"
         applicationId "com.reda.rwipaboard"
         minSdkVersion 26
-        targetSdkVersion 35
-        versionCode 4
-        versionName "1.0.3"
+        targetSdkVersion 36
+        versionCode 5
+        versionName "1.0.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
